@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class CustomExceptionHadler extends ResponseEntityExceptionHandler{
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	  protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
 	    List<String> details = new ArrayList<>();
