@@ -66,9 +66,6 @@ public class CarServiceImpl implements CarService{
 				throw new Exception("auto doesn't exist");
 			}
 			try {
-				Car updateCar = carInDB.get();
-				updateCar.setBrand(car.getBrand());
-				updateCar.setLicense(car.getLicense());
 				carRepo.save(car);
 				logger.info("end method update");
 				return true;
