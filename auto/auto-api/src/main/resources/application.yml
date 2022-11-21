@@ -1,0 +1,37 @@
+server:
+        port: 8090
+spring:
+    datasource:
+        driverClassName: org.postgresql.Driver
+        password: 1234
+        platform: postgres
+        url: jdbc:postgresql://localhost:5432/postgres
+        username: postgres
+    jpa:
+        hibernate:
+            ddl-auto: validate
+
+    kafka:
+        producer:
+              bootstarp-servers: locahost:9092
+              key-deserializer: org.apache.kafka.common.serialization.StringSerializer
+              value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+        consumer:
+              bootstarp-servers: localhost:9092
+              group-id: "my_group_id"
+              auto-offset-reset: earliest
+              key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+              value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+              properties:
+                spring:
+                    json:
+                        trusted:
+                            packages: '*'
+      
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: health,info,prometheus
+            
