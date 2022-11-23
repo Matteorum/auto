@@ -50,12 +50,6 @@ public class CarController {
 	public void create(@Valid @RequestBody CarDtoCreate car) {
 		logger.info("start create method");
 		Car carModel = conversion.dtoCreateToCar(car);
-//		if(carService.create(carModel)) {
-//			logger.info("end method create");
-//			return "car successfully created";
-//		}
-//		logger.info("end method create");
-//		return "impossible to create car";
 		kafkaProducer.writePost(carModel);
 		logger.info("end method create");
 	}
@@ -64,11 +58,7 @@ public class CarController {
 	public void carUpdate(@Valid @RequestBody CarDTO car) {
 		logger.info("start update method");
 		Car carModel = conversion.dtoToCar(car);
-//		if(carService.update(carModel)) {
-//			logger.info("end method update");
-//			return "car successfully updated";
-//		}
-//		return "impossible to update car";
+
 		kafkaProducer.writePut(carModel);
 		logger.info("end method update");
 		
@@ -78,11 +68,7 @@ public class CarController {
 	public void carDelete(@PathVariable UUID id) {
 		logger.info("start delete method");
 		kafkaProducer.writeDelete(id);
-//		if(car!=null) {
-//			logger.info("end method delete");
-//			return conversion.carToDTO(car);
-//		}
-//		return new CarDTO();
+
 		logger.info("end method delete");
 	}
 	
