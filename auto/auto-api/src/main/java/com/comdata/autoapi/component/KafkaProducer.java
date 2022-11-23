@@ -10,6 +10,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 import com.comdata.autoservice.model.Car;
+import com.comdata.autoservice.model.JwtUser;
 
 @Component
 public class KafkaProducer {
@@ -18,12 +19,15 @@ public class KafkaProducer {
 	private static final String POST= "post";
 	private static final String PUT= "put";
 	private static final String DELETE= "delete";
+	private static final String USER= "user";
 	Logger logger = LoggerFactory.getLogger(KafkaProducer.class);
 	
 	@Autowired
 	private KafkaTemplate<String, Car> kafkaTemplate;
 	@Autowired
 	private KafkaTemplate<String, UUID> kafkaTemplateDelete;
+	@Autowired
+	private KafkaTemplate<String, JwtUser> kafkaTemplateUser;
 	
 	public void writeMessage(Car msg) {
 		logger.info("send message");
@@ -43,6 +47,11 @@ public class KafkaProducer {
 	public void writeDelete(UUID msg) {
 		logger.info("send delete");
 		this.kafkaTemplateDelete.send(DELETE, msg);
+	}
+	
+	public void writeUser(JwtUser msg) {
+		logger.info("send delete");
+		this.kafkaTemplateUser.send(USER, msg);
 	}
 	
 	
