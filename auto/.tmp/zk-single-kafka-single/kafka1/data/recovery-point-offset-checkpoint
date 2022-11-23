@@ -1,6 +1,6 @@
 0
-55
-__consumer_offsets 22 23
+56
+__consumer_offsets 22 37
 __consumer_offsets 30 0
 __consumer_offsets 8 0
 __consumer_offsets 21 0
@@ -40,7 +40,8 @@ __consumer_offsets 2 0
 __consumer_offsets 43 0
 __consumer_offsets 6 0
 __consumer_offsets 14 0
-post 0 2
+user 0 2
+post 0 4
 __consumer_offsets 20 0
 __consumer_offsets 0 0
 __consumer_offsets 44 0
