@@ -4,7 +4,9 @@ package com.comdata.autoapi.controller;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.validation.Valid;
@@ -29,6 +31,7 @@ import com.comdata.autoapi.component.KafkaProducer;
 import com.comdata.autoservice.dto.CarDTO;
 import com.comdata.autoservice.dto.CarDtoCreate;
 import com.comdata.autoservice.model.Car;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.comdata.autoapi.service.CarService;
 
 @RequestMapping("/car")
@@ -47,18 +50,20 @@ public class CarController {
 	}
 	
 	@PostMapping("/")
-	public void create(@Valid @RequestBody CarDtoCreate car) {
+	public void create(@Valid @RequestBody CarDtoCreate car) throws JsonProcessingException {
 		logger.info("start create method");
 		Car carModel = conversion.dtoCreateToCar(car);
+		
+		
 		kafkaProducer.writePost(carModel);
 		logger.info("end method create");
 	}
 	
 	@PutMapping("/")
-	public void carUpdate(@Valid @RequestBody CarDTO car) {
+	public void carUpdate(@Valid @RequestBody CarDTO car) throws JsonProcessingException {
 		logger.info("start update method");
 		Car carModel = conversion.dtoToCar(car);
-
+		
 		kafkaProducer.writePut(carModel);
 		logger.info("end method update");
 		

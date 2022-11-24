@@ -24,11 +24,11 @@ public class KafkaController {
 		this.kafkaProducer = kafkaProducer;
 	}
 	
-	@PostMapping("/kafka")
-	public void writeMessageToTopic(@RequestBody Car message){
-        this.kafkaProducer.writeMessage(message);
-
-    }
+//	@PostMapping("/kafka")
+//	public void writeMessageToTopic(@RequestBody Car message){
+//        this.kafkaProducer.writeMessage(message);
+//
+//    }
 	
 }
 
